@@ -9,8 +9,8 @@ app.use(express.urlencoded());
 const http = require("http");
 const chatServer = http.createServer(app);
 const chatSockets = require("./config/chat_socket").chatSockets(chatServer);
-chatServer.listen(process.env.PORT || 8000);
-console.log("chatServer is listening on port process.env.PORT || 8000");
+chatServer.listen(process.env.PORT2 || 5000);
+console.log("chatServer is listening on process.env.PORT2 || 5000");
 app.get("/", (req, res) => {
   res.send("SEND");
 });
