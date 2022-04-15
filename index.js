@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 8000;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("./config/mongoose");
@@ -10,14 +9,14 @@ app.use(express.urlencoded());
 const http = require("http");
 const chatServer = http.createServer(app);
 const chatSockets = require("./config/chat_socket").chatSockets(chatServer);
-chatServer.listen(5000);
-console.log("chatServer is listening on port 5000");
+chatServer.listen(process.env.PORT || 8000);
+console.log("chatServer is listening on port process.env.PORT || 8000");
 app.get("/", (req, res) => {
   res.send("SEND");
 });
 app.use("/", require("./routes"));
 
-app.listen(port, function (err) {
+app.listen(process.env.PORT || 8000, function (err) {
   if (err) {
     console.log(`Error : ${err}`);
   } else {
